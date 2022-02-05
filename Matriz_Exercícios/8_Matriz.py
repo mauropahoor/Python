@@ -6,32 +6,30 @@ Calcule a média de cada turma e armazene em um vetor TURMA.
 Informe qual turma tem maior média, e quais alunos tiveram média maior que a média de sua turma.
 """
 
-student = 2
-notes = []
-classes = 2
-test = 2
-turma = [0] * classes
-med_class = 0
-
-for l in range(classes):
-    for i in range(student):
-        line = []
-        med_class = 0
-        for j in range(test):
-            n = int(input(f"Digite a nota {j + 1} do aluno {i + 1} da turma {l + 1}: "))
-            line.append(n)
-            med_class += n
-        med_class /= student
-        line.append(med_class)
-        notes.append(line)
-        turma[l] += notes[i][len(notes[0]) - 1]/student
-best_med = turma[0]
-for i in range(len(turma)):
-    if(turma[i] > best_med):
-        best_med_class = i
-        best_med = turma[i]
-print(f"A turma que obteve a melhor média foi a turma {i + 1}.")
-for i in range(student * classes):
-    if(notes[i][test] > best_med):
-        print(f"O aluno {i + 1} está acima da média da turma.")
+alunos=3
+notas=2
+turmas=2
+M=[]
+mediaTurmas=[]
+mediaAlunos=[]
+for i in range(turmas):
+    vetAlunos=[]
+    notaAlunos=[]
+    somaNotasTurma=0
+    for j in range(alunos):
+        vetNotas=[]
+        for k in range(notas):
+            vetNotas.append(float(input(f"Insira a nota {[k]} do aluno {[j]} da turma {[i]}: ")))
+        vetAlunos.append(vetNotas)
+        notaAlunos.append(sum(vetNotas)/notas)
+        somaNotasTurma+=sum(vetNotas)
+    mediaAlunos.append(notaAlunos)
+    mediaTurmas.append(somaNotasTurma/(alunos*notas))
+    M.append(vetAlunos)
+print(f"\nTurma com maior média: Turma{[mediaTurmas.index(max(mediaTurmas))]}\nMédia da turma: {max(mediaTurmas):.1f}")
+print("\nAlunos com média acima da média da sua turma: \n")
+for i in range(turmas):
+    for j in range(alunos):
+        if(mediaAlunos[i][j]>mediaTurmas[i]):
+            print(f"Turma{[i]} | Aluno{[j]} = {mediaAlunos[i][j]}")
     
